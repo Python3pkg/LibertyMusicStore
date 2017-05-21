@@ -41,7 +41,7 @@ test_artist.save()
 
 test_album = models.Album.objects.create(name="Test Album", store=test_artist)
 test_album.fiat_price = Decimal("8.90")
-test_album.description = u"My very first album åäö"
+test_album.description = "My very first album åäö"
 test_album.save()
 
 test_song1 = models.Song.objects.create(name="Song A", album=test_album, store=test_artist)

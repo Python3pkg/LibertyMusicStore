@@ -24,6 +24,6 @@ def checklist(context, store=None):
     # Populate CSS classes for the welcome wizard steps
     wizard = models.WelcomeWizard(store)
     step_class = {}
-    for step, status in wizard.get_step_statuses().items():
+    for step, status in list(wizard.get_step_statuses().items()):
         step_class[step] = "step-done" if status else "step-require"
     return locals()

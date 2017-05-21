@@ -81,7 +81,7 @@ class filename_gen(object):
     def __call__(self, instance, filename):
         salt = hashers.get_hasher().salt()
         salt = smart_str(salt)
-        return os.path.join(self.path, salt + u"-" + filename)
+        return os.path.join(self.path, salt + "-" + filename)
 
 
 def update_initial_groups():
@@ -275,7 +275,7 @@ class Album(StoreItem):
         return GENRES_DICT.get(self.genre)
 
     def __str__(self):
-        return u"%s: %s" % (self.store.name, self.name)
+        return "%s: %s" % (self.store.name, self.name)
 
 
 class Song(StoreItem):
@@ -313,7 +313,7 @@ class Song(StoreItem):
         return content_type, download_name, _file
 
     def __str__(self):
-        return u"%s: %s" % (self.store.name, self.name)
+        return "%s: %s" % (self.store.name, self.name)
 
 
 class DownloadTransaction(models.Model):
@@ -404,7 +404,7 @@ class DownloadTransaction(models.Model):
         """ Get blockchain.info payment address for this order.
         """
         from . import blockchain
-        label = self.description + u" Total: %s %s Order: %s" % (self.fiat_amount, self.currency, self.uuid)
+        label = self.description + " Total: %s %s Order: %s" % (self.fiat_amount, self.currency, self.uuid)
         self.btc_address = blockchain.create_new_receiving_address(label=label)
         return self.btc_address
 
@@ -412,7 +412,7 @@ class DownloadTransaction(models.Model):
         """ Get blockchain.info payment address for this order.
         """
         from . import payment
-        label = self.description + u" Total: %s %s Order: %s" % (self.fiat_amount, self.currency, self.uuid)
+        label = self.description + " Total: %s %s Order: %s" % (self.fiat_amount, self.currency, self.uuid)
         self.btc_address = payment.create_new_receiving_address(self.store.id, label)
         return self.btc_address
 

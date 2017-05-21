@@ -58,8 +58,8 @@ def ensure_safe_user_image(image):
 
     # Make sure the image has valid extension (can't upload .htm image)
     extension = str(doc_type.lower())
-    if not image.name.endswith(u".%s" % extension):
-        image.name = image.name + u"." + extension
+    if not image.name.endswith(".%s" % extension):
+        image.name = image.name + "." + extension
 
 
 def convert_to_btc(amount, currency):
@@ -74,12 +74,12 @@ def get_session_id(request):
 def merge_dicts(dictionary1, dictionary2):
     """ Courtesy of http://stackoverflow.com/a/18424201/315168 """
     output = {}
-    for item, value in dictionary1.items():
+    for item, value in list(dictionary1.items()):
         if item in dictionary2:
             if isinstance(dictionary2[item], dict):
                 output[item] = merge_dicts(value, dictionary2.pop(item))
         else:
             output[item] = value
-    for item, value in dictionary2.items():
+    for item, value in list(dictionary2.items()):
         output[item] = value
     return output

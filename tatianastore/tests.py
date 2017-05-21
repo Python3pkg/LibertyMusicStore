@@ -93,7 +93,7 @@ class DownloadTransactionTestCase(TestCase):
 
         test_album = models.Album.objects.create(name="Test Album", store=test_store)
         test_album.fiat_price = Decimal("8.90")
-        test_album.description = u"My very first album åäö"
+        test_album.description = "My very first album åäö"
         test_album.save()
 
         test_song1 = models.Song.objects.create(name="Song A", album=test_album, store=test_store)
@@ -154,10 +154,10 @@ class UploadAlbumTestCase(TestCase):
         self.assertTrue(os.path.exists(os.path.join(settings.MEDIA_ROOT, a.cover.name)))
 
         s = models.Song.objects.all()[0]
-        self.assertEqual(u'Title åäö', s.name)
+        self.assertEqual('Title åäö', s.name)
 
         s = models.Song.objects.all()[1]
-        self.assertEqual(u'Title 2', s.name)
+        self.assertEqual('Title 2', s.name)
 
 
 class CreditTransactionTestCase(TestCase):
@@ -179,7 +179,7 @@ class CreditTransactionTestCase(TestCase):
 
         logger.debug("Test album price is %s USD, %s BTC", self.fiat_price, self.btc_price)
 
-        self.test_store = test_store = models.Store.objects.create(name=u"Test Store åäö")
+        self.test_store = test_store = models.Store.objects.create(name="Test Store åäö")
         test_store.currency = settings.DEFAULT_PRICING_CURRENCY
         test_store.store_url = "http://localhost:8000/store/test-store/"
         test_store.operators = [owner]
@@ -289,7 +289,7 @@ class CryptoassetsPaymentTestCase(TestCase):
 
         test_album = models.Album.objects.create(name="Test Album", store=test_store)
         test_album.fiat_price = self.fiat_price
-        test_album.description = u"My very first album åäö"
+        test_album.description = "My very first album åäö"
         test_album.save()
 
         test_song1 = models.Song.objects.create(name="Song A", album=test_album, store=test_store)

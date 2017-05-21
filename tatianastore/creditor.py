@@ -31,7 +31,7 @@ def credit_transactions(store, transactions):
     sums = transactions.aggregate(Sum('btc_amount'))
     total = sums.get("btc_amount__sum") or Decimal("0")
 
-    logger.info(u"Crediting store %d %s total amount %s", store.id, store.name, total)
+    logger.info("Crediting store %d %s total amount %s", store.id, store.name, total)
     if settings.PAYMENT_SOURCE == "blockchain":
         tx_hash = blockchain.send_to_address(store.btc_address, total, "Crediting for %s" % store.name)
     elif settings.PAYMENT_SOURCE == "cryptoassets":
